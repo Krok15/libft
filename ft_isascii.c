@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfabre <rfabre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/26 22:04:38 by rfabre            #+#    #+#             */
-/*   Updated: 2016/11/28 20:11:48 by rfabre           ###   ########.fr       */
+/*   Created: 2016/11/28 14:57:50 by rfabre            #+#    #+#             */
+/*   Updated: 2016/11/28 19:07:35 by rfabre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+int		ft_isascii(int c)
 {
-	size_t i;
-
-	i = -1;
-	while (++i < len)
-	{
-		if (*(src + i))
-			*(dst + i) = *(src + i);
-		else
-			while (i < len)
-				*(dst + i++) = '\0';
-	}
-
-	return (dst);
+	if ((c >= 0) && (c <= 127))
+		return (1);
+	else
+		return (0);
 }

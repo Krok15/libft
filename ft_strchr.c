@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfabre <rfabre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/26 22:04:38 by rfabre            #+#    #+#             */
-/*   Updated: 2016/11/28 20:11:48 by rfabre           ###   ########.fr       */
+/*   Created: 2016/11/28 16:43:00 by rfabre            #+#    #+#             */
+/*   Updated: 2016/12/01 11:20:42 by rfabre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t i;
+	char t;
+	int i;
+	char *ptr;
 
-	i = -1;
-	while (++i < len)
+	i = 0;
+	t = (char)c;
+	ptr = (char *)s;
+	while (ptr[i])
 	{
-		if (*(src + i))
-			*(dst + i) = *(src + i);
-		else
-			while (i < len)
-				*(dst + i++) = '\0';
+		if (t == ptr[i])
+			return (&ptr[i]);
+	i++;
 	}
-
-	return (dst);
+	if (t == '\0' && ptr[i] == '\0')
+	{
+		return (&ptr[i]);
+	}
+	return (NULL);
 }

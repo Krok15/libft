@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfabre <rfabre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/26 22:04:38 by rfabre            #+#    #+#             */
-/*   Updated: 2016/11/28 20:11:48 by rfabre           ###   ########.fr       */
+/*   Created: 2016/12/01 18:20:31 by rfabre            #+#    #+#             */
+/*   Updated: 2016/12/01 18:40:32 by rfabre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+char	*ft_strnew(size_t size)
 {
+	char *rslt;
 	size_t i;
-
+	
 	i = -1;
-	while (++i < len)
-	{
-		if (*(src + i))
-			*(dst + i) = *(src + i);
-		else
-			while (i < len)
-				*(dst + i++) = '\0';
-	}
-
-	return (dst);
+	if (size == 0)
+		return (NULL);
+	if ((rslt = (char*)malloc(size + 1)) == NULL)
+		return (NULL);
+	while (++i < size + 1)
+			rslt[i] = '\0';
+	return (rslt);
 }

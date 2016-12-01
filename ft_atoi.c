@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfabre <rfabre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/26 22:04:38 by rfabre            #+#    #+#             */
-/*   Updated: 2016/11/28 20:11:48 by rfabre           ###   ########.fr       */
+/*   Created: 2016/11/28 16:15:07 by rfabre            #+#    #+#             */
+/*   Updated: 2016/12/01 22:34:45 by rfabre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+int		ft_atoi(const char *str)
 {
-	size_t i;
+	int i;
+	int result;
+	int sign;
 
-	i = -1;
-	while (++i < len)
+	i = 0;
+	result = 0;
+	sign = 1;
+	while (ft_isspace(str[i]))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
 	{
-		if (*(src + i))
-			*(dst + i) = *(src + i);
+		if (ft_isdigit(str[i + 1]))
+		{
+			sign = (str[i] == '+') ? 1 : -1;
+			i++;
+		}
 		else
-			while (i < len)
-				*(dst + i++) = '\0';
+			return (0);
 	}
-
-	return (dst);
+	while (ft_isdigit(str[i]))
+		result = result * 10 + str[i++] - '0';
+	result *= sign;
+	return (result);
 }

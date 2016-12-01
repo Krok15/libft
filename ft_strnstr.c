@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfabre <rfabre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/26 22:04:38 by rfabre            #+#    #+#             */
-/*   Updated: 2016/11/28 20:11:48 by rfabre           ###   ########.fr       */
+/*   Created: 2016/12/01 13:56:53 by rfabre            #+#    #+#             */
+/*   Updated: 2016/12/01 16:21:01 by rfabre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
 	size_t i;
+	size_t j;
 
-	i = -1;
-	while (++i < len)
+	i = 0;
+	j = 0;
+	if (little[j] == '\0')
+		return ((char*)(big));
+	while (big[i] != '\0' && i < len)
 	{
-		if (*(src + i))
-			*(dst + i) = *(src + i);
-		else
-			while (i < len)
-				*(dst + i++) = '\0';
+		j = 0;
+		if (big[i] == little[j])
+		{
+		while (big[i + j] == little[j] && big[i + j] && i + j < len)
+			j++;
+		if (little[j] == '\0')
+			return ((char*)(big + i));
+		}
+	i++;
 	}
-
-	return (dst);
-}
+	return (NULL);
+	}
