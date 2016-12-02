@@ -6,7 +6,7 @@
 /*   By: rfabre <rfabre@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 22:26:46 by rfabre            #+#    #+#             */
-/*   Updated: 2016/12/01 23:07:48 by rfabre           ###   ########.fr       */
+/*   Updated: 2016/12/02 16:16:26 by rfabre           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ char * ft_strtrim(char const *s)
 	int j;
 	char *rslt;
 
-	i = 0;
+	i = -1;
 	if (s == NULL)
 		return (NULL);
 	j = ft_strlen(s);
-	while (ft_isspace(s[j]))
+	while (s[j- 1] == ' ' || s[j - 1] == '\n' || s[j - 1] == '\t')
 		j--;
-	while (ft_isspace(s[i]))
-		i++;
+	while (s[i++] == ' ' || s[i] == '\n' || s[i] == '\t')
+		j--;
 	if (j < 0)
 		j = 0;
-	if ((rslt = (char*)malloc(sizeof(char) * (j + i + 1))) == NULL)
+	if ((rslt = (char*)malloc(sizeof(char) * (j + 1))) == NULL)
 		return (NULL);
 	s += i;
 	i = -1;
